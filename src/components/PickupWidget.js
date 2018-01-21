@@ -1,5 +1,6 @@
 import React from 'react';
 import Autocomplete from './Autocomplete';
+import {DebounceInput} from 'react-debounce-input';
 
 export default class PickupWidget extends React.Component {
 
@@ -7,26 +8,44 @@ export default class PickupWidget extends React.Component {
     super(props);
     this.state = {
       value: '',
-      options: {}
+      options: []
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleLabel = this.handleLabel.bind(this);
   }
 
   handleChange(e) {
     this.setState({value: e.target.value});
-    if (e.target.value.length < 2) {
-      console.log('no results');
-    } else {
-      fetch(`https://cors.io/?https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=6&solrTerm=${e.target.value}`)
+
+    const endpoint = `https://cors.io/?https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=6&solrTerm=${e.target.value}`
+
+    if (e.target.value.length > 1) {
+      fetch(endpoint)
       .then(results => {
         return results.json();
       }).then(data => {
-        console.log({options: data.results.docs});
-        //this.setState({options: data.results.docs});
-      });
+
+        const finalArray = [];
+
+        data.results.docs.forEach((value, index) => {
+          finalArray.push({"name": value.name, "locationId": value.locationId, "iata": value.iata, "city": value.city, "country": value.country, "region": value.region, "label": this.handleLabel(value.name)});
+        });
+
+        this.setState({options: finalArray});
+        console.log('change state');
+      }).catch(err => {
+        this.setState({options: [{"name": "No results found"}]});
+      })
     }
   }
+
+  handleLabel(name) {
+    if (name === 'No results found') return undefined;
+    const label = name.split(" ");
+    return name.includes('Airport') ? "airport" : name.includes('Station') ? 'station' : 'city';
+  }
+
 
   render() {
     return (
@@ -37,13 +56,17 @@ export default class PickupWidget extends React.Component {
           <h2 className="pickup-widget__title">Where are you going?</h2>
           <label className="pickup-widget__label">
             Pick-up Location
-          </label>  
-          <input placeholder="city, airport, station, region, district…" 
-                 className="pickup-widget__input" 
-                 type="text" name="name"
-                 value={this.state.value}
-                 onChange={this.handleChange} 
+          </label> 
+          <DebounceInput
+            minLength={1}
+            debounceTimeout={0}
+            className="pickup-widget__input" 
+            type="text" name="name"
+            value={this.state.value}
+            placeholder="city, airport, station, region, district…" 
+            onChange={this.handleChange} 
           />
+          
           {this.state.value.length > 1 && <Autocomplete suggestions={this.state.options} /> }
         </form>
       </div>  
