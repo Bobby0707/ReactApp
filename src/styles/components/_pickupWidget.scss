@@ -1,0 +1,42 @@
+.pickup-widget {
+  background: $dark-yellow;
+  border-bottom: 2px solid #DAB129;
+  border-radius: 0px;
+  box-shadow: none;
+  float: left;
+  margin: 18.5rem 0 0 12.5rem;
+  width: 39%;
+}
+
+.pickup-widget__form {
+  padding: 5%;
+}
+
+.pickup-widget__title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 4.1rem;
+  text-shadow: none;
+  padding-bottom: 1rem;
+}
+
+.pickup-widget__label {
+  color: $ligher-black;
+  display: block;
+  font-size: 1.4rem;
+  line-height: 3rem;
+  text-shadow: none;
+}
+
+.pickup-widget__input {
+  padding: 1.2rem 8% 1.2rem 2%;
+  width: 90%;
+  line-height: 1.5rem;
+  margin: 0;
+  border-radius: 0;
+  background: #FEFEFE;
+  border-color: #a9a9a9;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 1.3rem;
+}
