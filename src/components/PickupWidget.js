@@ -1,6 +1,9 @@
 import React from 'react';
 import Autocomplete from './Autocomplete';
 import {DebounceInput} from 'react-debounce-input';
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
 
 export default class PickupWidget extends React.Component {
 

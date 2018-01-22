@@ -1,8 +1,6 @@
 import React from 'react';
 
 const Autocomplete = props => {
-  
-  console.log(props.suggestions);
 
   return (
   <ul className="autocomplete--list">
@@ -17,7 +15,7 @@ const Autocomplete = props => {
           }
         </a>
       </li>
-    )) : <li class="disabled">No results found</li>}
+    )) : <li className="disabled">No results found</li>}
     
   </ul>
 );
