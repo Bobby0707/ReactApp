@@ -9,7 +9,8 @@
     "serve": "live-server public/",
     "build": "webpack",
     "dev-server": "webpack-dev-server",
-    "start": "yarn install && yarn run dev-server"
+    "start": "yarn install && yarn run dev-server",
+    "test": "jest"
   },
   "dependencies": {
     "babel-cli": "6.24.1",
@@ -31,6 +32,7 @@
     "react-debounce-input": "^3.1.0",
     "react-dom": "16.0.0",
     "sass-loader": "6.0.6",
+    "sasslint-loader": "^0.0.1",
     "sasslint-webpack-plugin": "^1.0.4",
     "style-loader": "0.18.2",
     "validator": "8.0.0",
