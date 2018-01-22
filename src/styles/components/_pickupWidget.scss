@@ -3,9 +3,8 @@
   border-bottom: 2px solid $darker-yellow;
   border-radius: 0;
   box-shadow: none;
-  float: left;
-  margin: 18.5rem 0 0 12.5rem;
-  width: 39%;
+  margin: 18.5rem auto;
+  width: 80%;
 }
 
 .pickup-widget--form {
@@ -37,4 +36,12 @@
   margin: 0;
   padding: 1.2rem 8% 1.2rem 2%;
   width: 90%;
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .pickup-widget {
+    float: left;
+    margin: 18.5rem 0 0 12.5rem;
+    width: 39%;
+  }
 }
