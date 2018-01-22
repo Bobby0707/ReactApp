@@ -33,9 +33,9 @@ export default class PickupWidget extends React.Component {
         });
 
         this.setState({options: finalArray});
-        console.log('change state');
+
       }).catch(err => {
-        this.setState({options: [{"name": "No results found"}]});
+        this.setState({options: []});
       })
     }
   }
@@ -51,16 +51,16 @@ export default class PickupWidget extends React.Component {
     return (
       <div className="pickup-widget">
         <form 
-          className="pickup-widget__form"
+          className="pickup-widget--form"
           onClick={this.handleSubmit}>
-          <h2 className="pickup-widget__title">Where are you going?</h2>
-          <label className="pickup-widget__label">
+          <h2 className="pickup-widget--title">Where are you going?</h2>
+          <label className="pickup-widget--label">
             Pick-up Location
           </label> 
           <DebounceInput
             minLength={1}
             debounceTimeout={0}
-            className="pickup-widget__input" 
+            className="pickup-widget--input" 
             type="text" name="name"
             value={this.state.value}
             placeholder="city, airport, station, region, district…" 

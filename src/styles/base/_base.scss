@@ -3,13 +3,16 @@ html {
   font-size: 62.5%;
 }
 
-h2, ul {
+h2,
+ul {
   margin: 0;
   padding: 0;
 }
 
 body {
+  //sass-lint:disable-all
   background-image: url('http://www.rentalcars.com/images/site_graphics/newsite/lifestyle_bg_no_blur.jpg');
+  //sass-lint:enable-all
   background-position: center;
   background-position-y: 0;
   background-repeat: no-repeat;

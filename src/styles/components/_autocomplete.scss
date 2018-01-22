@@ -1,56 +1,63 @@
-.autocomplete__list {
-    background: $white;
-    border: 1px solid #e6e6e6;
-    font-size: 1.4rem;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-    list-style: none;
+.autocomplete--list {
+  background: $white;
+  border: 1px solid $darker-white;
+  box-shadow: 0 .2rem .2rem $black-medium;
+  font-size: 1.4rem;
+  list-style: none;
 
-    li {
-        color: #989898;
-        padding: 0px;
-        cursor: pointer;
-        border-radius: 2px;
-        border-bottom: 1px solid #eaeaea;
-    }
+  li {
+    border-bottom: .1rem solid $light-white;
+    border-radius: .2rem;
+    color: $grey-medium;
+    cursor: pointer;
+    padding: 0;
+  }
 
-    a {
-        font-weight: normal;
-        text-overflow: ellipsis;
-        padding: 10px 9px 10px 9px;
-        white-space: nowrap;
-        overflow: hidden;
-        border-radius: 0;
-        display: block;
-        color: #222;
-        text-decoration: none;
-    }
+  a {
+    border-radius: 0;
+    color: $font-black;
+    display: block;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 1rem .9rem;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .disabled {
+    font-style: italic;
+    padding: 1rem .9rem;
+    pointer-events: none;
+  }
+  
 }
 
-.autocomplete__label {
-    display: inline-flex;
-    float: left;
-    height: 18px;
-    justify-content: center;
-    align-items: center;
-    background: #F2817F;
-    color: #fff;
-    width: 60px;
-    border-radius: 4px;
-    margin-top: 4px;
-    margin-right: 12px;
+.autocomplete--label {
+  align-items: center;
+  background: $light-blue;
+  border-radius: .4rem;
+  color: $white;
+  display: inline-flex;
+  float: left;
+  height: 1.8rem;
+  justify-content: center;
+  margin-right: 1.2rem;
+  margin-top: .4rem;
+  width: 6rem;
 
-    &.airport {
-        background: #6EB8FA;
-    }
+  &.airport {
+    background: $pink;
+  }
 
-    &.station {
-        background: #9D9DBB;
-    }
+  &.station {
+    background: $grey-dark;
+  }
 }
 
 span {
-    font-weight: normal;
-    color: #808080;
-    display: block;
-    font-size: 85%;
+  color: $text-grey;
+  display: block;
+  font-size: 85%;
+  font-weight: normal;
 }

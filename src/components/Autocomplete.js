@@ -5,19 +5,19 @@ const Autocomplete = props => {
   console.log(props.suggestions);
 
   return (
-  <ul className="autocomplete__list">
-    {props.suggestions.map((suggestion, index) => (
+  <ul className="autocomplete--list">
+    {props.suggestions.length ? props.suggestions.map((suggestion, index) => (
       <li key={suggestion.locationId-index}>
         <a href="#">
-          {suggestion.label && <span className={`autocomplete__label ${suggestion.label}` }>{suggestion.label}</span>}
-          <em>{suggestion.name && suggestion.name.substring(0, 3)}</em>{suggestion.name && suggestion.name.substring(3)} {suggestion.iata && `(${suggestion.iata})`}
+          {suggestion.label && <span className={`autocomplete--label ${suggestion.label}` }>{suggestion.label}</span>}
+          {suggestion.name && suggestion.name} {suggestion.iata && `(${suggestion.iata})`}
           {suggestion.label === "airport" ? <span>{suggestion.city}, {suggestion.country}</span> 
           : suggestion.label === "station" ? <span>{suggestion.city}, {suggestion.region}, {suggestion.country}</span>
           : <span>{suggestion.region}, {suggestion.country}</span>
           }
         </a>
       </li>
-    ))}
+    )) : <li class="disabled">No results found</li>}
     
   </ul>
 );
