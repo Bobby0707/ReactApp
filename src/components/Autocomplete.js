@@ -4,7 +4,7 @@ const Autocomplete = props => {
 
   return (
   <ul className="autocomplete--list">
-    {props.suggestions.length ? props.suggestions.map((suggestion, index) => (
+    {props.suggestions.length && props.suggestions[0].name !== "No results found" ? props.suggestions.map((suggestion, index) => (
       <li key={suggestion.locationId-index}>
         <a href="#">
           {suggestion.label && <span className={`autocomplete--label ${suggestion.label}` }>{suggestion.label}</span>}
