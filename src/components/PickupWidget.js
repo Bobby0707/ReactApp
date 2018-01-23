@@ -15,7 +15,6 @@ export default class PickupWidget extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleLabel = this.handleLabel.bind(this);
   }
 
   handleChange(e) {
@@ -24,22 +23,7 @@ export default class PickupWidget extends React.Component {
     const endpoint = `https://cors.io/?https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=6&solrTerm=${e.target.value}`
 
     if (e.target.value.length > 1) {
-      fetch(endpoint)
-      .then(results => {
-        return results.json();
-      }).then(data => {
-
-        const finalArray = [];
-
-        data.results.docs.forEach((value, index) => {
-          finalArray.push({"name": value.name, "locationId": value.locationId, "iata": value.iata, "city": value.city, "country": value.country, "region": value.region, "label": this.handleLabel(value.name)});
-        });
-
-        this.setState({options: finalArray});
-
-      }).catch(err => {
-        this.setState({options: []});
-      })
+      this.handleRequest(endpoint);
     }
   }
 
@@ -47,6 +31,37 @@ export default class PickupWidget extends React.Component {
     if (name === 'No results found') return undefined;
     const label = name.split(" ");
     return name.includes('Airport') ? "airport" : name.includes('Station') ? 'station' : 'city';
+  }
+
+  handleRequest(endpoint) {
+    fetch(endpoint)
+    .then(results => {
+      return results.json();
+    }).then(data => {
+
+      const finalArray = [];
+
+      data.results.docs.forEach((value, index) => {
+        finalArray.push({"name": value.name, "locationId": value.locationId, "iata": value.iata, "city": value.city, "country": value.country, "region": value.region, "label": this.handleLabel(value.name), "emindex": this.handleEm(this.state.value, value.name)});
+      });
+
+      this.setState({options: finalArray});
+
+    }).catch(err => {
+      this.setState({options: []});
+    })
+  }
+
+  handleEm(actualValue, nameValue) {
+    let i;
+    let match = 0;
+
+    for (i=0; i<nameValue.length; i++) {
+      if (nameValue.toLowerCase()[i] === actualValue[i]) match++;
+      else break;
+    }  
+  
+    return match;
   }
 
 
@@ -70,7 +85,7 @@ export default class PickupWidget extends React.Component {
             onChange={this.handleChange} 
           />
           
-          {this.state.value.length > 1 && <Autocomplete suggestions={this.state.options} /> }
+          {this.state.value.length > 1 && <Autocomplete suggestions={this.state.options}/> }
         </form>
       </div>  
     )

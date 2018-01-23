@@ -40,6 +40,8 @@
   color: $white;
   display: inline-flex;
   float: left;
+  font-size: 85%;
+  font-weight: bold;
   height: 1.8rem;
   justify-content: center;
   margin-right: 1.2rem;
@@ -55,9 +57,14 @@
   }
 }
 
-span {
+.autocomplete--location {
   color: $text-grey;
   display: block;
   font-size: 85%;
   font-weight: normal;
+}
+
+em {
+  font-style: normal;
+  font-weight: bold;
 }
